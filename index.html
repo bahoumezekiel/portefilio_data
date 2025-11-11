@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - BAHOUM Wépadan Izekiel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #FF6B35;
+            --primary-dark: #E55A2B;
+            --secondary-color: #2D2D2D;
+            --accent-color: #FF8C5A;
+            --light-color: #F8F9FA;
+            --dark-color: #1A1A1A;
+            --gradient: linear-gradient(135deg, #FF6B35 0%, #FF8C5A 100%);
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            --hover-shadow: 0 15px 40px rgba(255, 107, 53, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(45, 45, 45, 0.95);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            bottom: 5px;
+            right: -10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+            position: relative;
+        }
+
+        .nav-links a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: var(--gradient);
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        /* Section Hero */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            filter: blur(100px);
+            opacity: 0.1;
+            top: -200px;
+            right: -200px;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            filter: blur(80px);
+            opacity: 0.1;
+            bottom: -150px;
+            left: -150px;
+        }
+
+        /* Section À propos */
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        .about-text h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .about-image {
+            flex: 1;
+            text-align: center;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        .profile-img {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid transparent;
+            background: var(--gradient) border-box;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.5s;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Section Compétences */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background-color: var(--secondary-color);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gradient);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .skill-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-category h3 i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .skill-list li::before {
+            content: '▸';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Section Projets */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--secondary-color);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.1);
+        }
+
+        .project-info {
+            padding: 25px;
+            position: relative;
+        }
+
+        .project-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .project-info p {
+            opacity: 0.8;
+            margin-bottom: 15px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .project-tag {
+            background: rgba(255, 107, 53, 0.2);
+            color: var(--primary-color);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* Section Certifications */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .cert-card {
+            background-color: var(--secondary-color);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .cert-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .cert-info {
+            padding: 20px;
+        }
+
+        .cert-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Sections générales */
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            padding-bottom: 15px;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background-color: var(--secondary-color);
+            margin: 5% auto;
+            padding: 40px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 900px;
+            position: relative;
+            animation: modalFade 0.5s;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes modalFade {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--light-color);
+            transition: color 0.3s;
+            z-index: 10;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+
+        .modal-title {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 2rem;
+            padding-right: 40px;
+        }
+
+        .modal-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-links {
+            margin-top: 25px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .modal-link {
+            display: inline-flex;
+            align-items: center;
+            background: var(--gradient);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .modal-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        .modal-link i {
+            margin-right: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-bottom: 30px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            margin: 0 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+        }
+
+        .copyright {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-image {
+                order: -1;
+            }
+
+            .profile-img {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 80%;
+                height: calc(100vh - 70px);
+                background-color: rgba(45, 45, 45, 0.95);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 50px;
+                transition: right 0.3s;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                margin: 20px 0;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .modal-content {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">DataPortfolio</div>
+                <ul class="nav-links">
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#skills">Compétences</a></li>
+                    <li><a href="#projects">Projets</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Section À propos -->
+    <section id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Salut, je suis BAHOUM Wépadan Izekiel</h3>
+                    <p>Étudiant passionné en analyse de données avec une solide formation en statistiques, programmation et visualisation de données. Je suis constamment à la recherche de nouvelles opportunités pour appliquer mes compétences à des problèmes du monde réel.</p>
+                    <p>Actuellement en dernière année de ma licence en Science des Données, je maîtrise plusieurs outils et technologies d'analyse de données, y compris Python, R, SQL, Tableau et Power BI.</p>
+                    <p>Je suis particulièrement intéressé par l'apprentissage automatique, l'analyse prédictive et la visualisation interactive des données.</p>
+                </div>
+                <div class="about-image">
+                    <img src="photo_o.png" alt="Photo de profil" class="profile-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Compétences -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>Compétences</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i class="fas fa-chart-bar"></i> Visualisation de données</h3>
+                    <ul class="skill-list">
+                        <li>Tableau</li>
+                        <li>Power BI</li>
+                        <li>Matplotlib & Seaborn</li>
+                        <li>Plotly & Dash</li>
+                        <li>D3.js</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-search"></i> Fouille de données</h3>
+                    <ul class="skill-list">
+                        <li>Nettoyage et prétraitement</li>
+                        <li>Exploration de données (EDA)</li>
+                        <li>Analyse statistique</li>
+                        <li>Détection d'anomalies</li>
+                        <li>Segmentation</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-code"></i> Programmation</h3>
+                    <ul class="skill-list">
+                        <li>Python (Pandas, NumPy, Scikit-learn)</li>
+                        <li>R (Tidyverse, ggplot2)</li>
+                        <li>SQL (MySQL, PostgreSQL)</li>
+                        <li>JavaScript (D3.js)</li>
+                        <li>Bash/Shell</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-brain"></i> Machine Learning</h3>
+                    <ul class="skill-list">
+                        <li>Régression (linéaire, logistique)</li>
+                        <li>Classification (arbres de décision, SVM)</li>
+                        <li>Clustering (K-means, DBSCAN)</li>
+                        <li>Réseaux de neurones</li>
+                        <li>Validation croisée</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-tools"></i> Outils et technologies</h3>
+                    <ul class="skill-list">
+                        <li>Git & GitHub</li>
+                        <li>Jupyter Notebook</li>
+                        <li>Apache Spark</li>
+                        <li>Docker</li>
+                        <li>Google Cloud Platform</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fas fa-users"></i> Soft Skills</h3>
+                    <ul class="skill-list">
+                        <li>Résolution de problèmes</li>
+                        <li>Communication technique</li>
+                        <li>Travail d'équipe</li>
+                        <li>Gestion de projet</li>
+                        <li>Pensée critique</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Projets -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mes Projets</h2>
+            </div>
+            <div class="projects-grid">
+                <!-- Projet 1 -->
+                <div class="project-card" onclick="openProjectModal('project1')">
+                    <img src="photo-oeuf.jpg" alt="Modèle de classification d'oeuf" class="project-image">
+                    <div class="project-info">
+                        <h3>Analyse de la qualité des œufs dans une ferme</h3>
+                        <p>Classification des œufs selon leur qualité (fertile, infertile, mort)</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Deep Learning</span>
+                            <span class="project-tag">Classification</span>
+                            <span class="project-tag">Agriculture</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Projet 2 -->
+                <div class="project-card" onclick="openProjectModal('project2')">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Analyse de sentiment" class="project-image">
+                    <div class="project-info">
+                        <h3>Analyse de sentiment sur la qualité de la formation à l'UVBF</h3>
+                        <p>Classification des opinions des étudiants sur la qualité de la formation à l'UVBF</p>
+                        <div class="project-tags">
+                            <span class="project-tag">NLP</span>
+                            <span class="project-tag">Analyse de sentiment</span>
+                            <span class="project-tag">Éducation</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Projet 3 -->
+                <div class="project-card" onclick="openProjectModal('project3')">
+                    <img src="pneumonie.jpg" alt="Détection de la pneumonie" class="project-image">
+                    <div class="project-info">
+                        <h3>Détection de la pneumonie</h3>
+                        <p>Détection de la pneumonie à partir d'images pulmonaires de scanner</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Computer Vision</span>
+                            <span class="project-tag">Santé</span>
+                            <span class="project-tag">Deep Learning</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Projet 4 -->
+                <div class="project-card" onclick="openProjectModal('project4')">
+                    <img src="agri-bot.PNG" alt="Chatbot" class="project-image">
+                    <div class="project-info">
+                        <h3>Chatbot d'aide aux agriculteurs</h3>
+                        <p>Chatbot pour répondre aux questions des agriculteurs sur certaines cultures</p>
+                        <div class="project-tags">
+                            <span class="project-tag">NLP</span>
+                            <span class="project-tag">RAG</span>
+                            <span class="project-tag">Agriculture</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Certifications -->
+    <section id="certifications">
+        <div class="container">
+            <div class="section-title">
+                <h2>Certifications</h2>
+            </div>
+            <div class="certifications-grid">
+                <div class="cert-card" onclick="openCertModal('cert0')">
+                    <img src="MachineLearning.PNG" alt="Certification Coursera" class="cert-image">
+                    <div class="cert-info">
+                        <h3>Certification Coursera</h3>
+                        <p>Avril 2025</p>
+                    </div>
+                </div>
+                <!-- Certification 1 -->
+                <div class="cert-card" onclick="openCertModal('cert1')">
+                    <img src="miabe.PNG" alt="Certification MIABE HACKATHON" class="cert-image">
+                    <div class="cert-info">
+                        <h3>Certification finaliste de MIABE HACKATHON</h3>
+                        <p>DTC - Mai 2025</p>
+                    </div>
+                </div>
+                <!-- Certification 2 -->
+                <div class="cert-card" onclick="openCertModal('cert2')">
+                    <img src="data_analyste.PNG" alt="Certification en Analyse de données" class="cert-image">
+                    <div class="cert-info">
+                        <h3>Certification en Analyse de données</h3>
+                        <p>FORCE-N - Novembre 2024 - Avril 2025</p>
+                    </div>
+                </div>
+                <!-- Certification 3 -->
+                <div class="cert-card" onclick="openCertModal('cert3')">
+                    <img src="cybersecurite.PNG" alt="Certification Analyste en Cybersécurité" class="cert-image">
+                    <div class="cert-info">
+                        <h3>Certification Analyste en Cybersécurité</h3>
+                        <p>Force-N - Mai 2025</p>
+                    </div>
+                </div>
+                <!-- Certification 4 -->
+                <div class="cert-card" onclick="openCertModal('cert4')">
+                    <img src="bakeli_learning.PNG" alt="Certification Machine Learning et Régression" class="cert-image">
+                    <div class="cert-info">
+                        <h3>Certification Machine Learning et Régression</h3>
+                        <p>Bakeli - juillet 2025</p>
+                    </div>
+                </div>
+                <!-- Certification 5 -->
+                <div class="cert-card" onclick="openCertModal('cert5')">
+                    <img src="burautique.PNG" alt="Certification en bureautique" class="cert-image">
+                    <div class="cert-info">
+                        <h3>Certification informatique Bureautique</h3>
+                        <p>Octobre 2022</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/w%C3%A9padan-ezekiel-bahoum-8a949625a/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/bahoumezekiel" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="mailto:bahoumezekiel70@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="copyright">© 2023 BAHOUM Wépadan Izekiel. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Modals pour les projets -->
+    <div id="project1-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('project1-modal')">&times;</span>
+            <h2 class="modal-title">Analyse de la qualité des œufs dans une ferme</h2>
+            <img src="photo-oeuf.jpg" alt="Analyse de la qualité des œufs" class="modal-image">
+            <p>Conception d'un modèle de Deep Learning pour la classification d'œufs. Développement d'un modèle de classification d'images capable d'identifier l'état d'un œuf (fertile, infertile ou mort). Le modèle a été entraîné à l'aide de réseaux de neurones convolutifs (CNN) afin d'optimiser la précision et la robustesse des prédictions. L'objectif global du projet est de permettre aux éleveurs de volaille d'augmenter leur production.</p>
+            <h3>Objectifs:</h3>
+            <ul>
+                <li>Optimisation de la production des volailles</li>
+                <li>Développer un modèle de classification</li>
+                <li>Déployer le modèle puis le rendre accessible aux éleveurs</li>
+            </ul>
+            <h3>Technologies utilisées:</h3>
+            <p>Python, Pandas, Scikit-learn, Matplotlib, TensorFlow</p>
+            <h3>Résultats:</h3>
+            <p>Le modèle a atteint une précision de 94% dans la classification d'œufs et un loss faible de 0.13</p>
+            <p>Cliquez sur le lien ci-dessous pour tester l'application. Le processus est simple : il suffit de soumettre une image mirage de l'œuf et le modèle va vous donner la probabilité de la qualité de l'œuf.</p>
+            <div class="modal-links">
+                <a href="https://modelsmartintelligent-7plgshgj8daezpkoujxja2.streamlit.app/" target="_blank" class="modal-link"><i class="fas fa-external-link-alt"></i> Voir le projet en ligne</a>
+                <a href="https://github.com/bahoumezekiel/model_smartIntelligent" target="_blank" class="modal-link"><i class="fab fa-github"></i> Lien GitHub du projet</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="project2-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('project2-modal')">&times;</span>
+            <h2 class="modal-title">Analyse de sentiment sur la qualité de la formation dispensée à l'UVBF</h2>
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Analyse de sentiment" class="modal-image">
+            <p>Ce projet visait à analyser les sentiments exprimés sur la qualité de la formation dispensée à l'UVBF.</p>
+            <h3>Objectifs:</h3>
+            <ul>
+                <li>Collecter et nettoyer des données</li>
+                <li>Développer un modèle de classification des sentiments</li>
+                <li>Analyser l'évolution des opinions au fil du temps</li>
+            </ul>
+            <h3>Technologies utilisées:</h3>
+            <p>Python, Pandas, SPACY, Seaborn, Sklearn</p>
+            <h3>Résultats:</h3>
+            <p>Le modèle a classifié correctement 92% des sentiments avec une précision de 0.89. L'analyse a révélé une tendance positive au fil du temps.</p>
+        </div>
+    </div>
+
+    <div id="project3-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('project3-modal')">&times;</span>
+            <h2 class="modal-title">Détection de la pneumonie</h2>
+            <img src="pneumonie.jpg" alt="Détection de la pneumonie" class="modal-image">
+            <p>Conception d'un modèle de Computer Vision pour la détection de la pneumonie.</p>
+            <h3>Objectifs:</h3>
+            <ul>
+                <li>Automatiser le diagnostic médical — utiliser l'intelligence artificielle pour aider les professionnels de santé à détecter rapidement la pneumonie à partir d'images pulmonaires.</li>
+                <li>Améliorer la précision du dépistage — réduire les erreurs humaines et augmenter la fiabilité des diagnostics grâce à un modèle entraîné sur des données d'images médicales.</li>
+                <li>Accélérer le processus d'analyse — fournir un outil capable d'analyser un grand volume d'images radiographiques en peu de temps.</li>
+            </ul>
+            <h3>Technologies utilisées:</h3>
+            <p>TensorFlow, VGG16, Pandas, Scikit-learn, Matplotlib...</p>
+            <h3>Résultats:</h3>
+            <p>Le modèle a atteint une précision de 87%</p>
+            <p>Cliquez sur le lien ci-dessous pour tester l'application. Le processus est simple : il suffit de soumettre une image scanner du poumon et le modèle va vous donner la probabilité de la pneumonie.</p>
+            <div class="modal-links">
+                <a href="https://pulmonie-computer-vision.streamlit.app/" target="_blank" class="modal-link"><i class="fas fa-external-link-alt"></i> Voir l'application</a>
+                <a href="https://github.com/bahoumezekiel/deploiement_projet_computer_vision" target="_blank" class="modal-link"><i class="fab fa-github"></i> Lien GitHub du projet</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="project4-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('project4-modal')">&times;</span>
+            <h2 class="modal-title">Chatbot d'aide aux agriculteurs</h2>
+            <img src="agri-bot.PNG" alt="Chatbot" class="modal-image">
+            <p>Conception d'un chatbot conversationnel destiné à assister les agriculteurs dans la recherche d'informations et de conseils agricoles. Le système est basé sur l'approche RAG (Retrieval-Augmented Generation) et intègre un modèle de langage LLM Ollama, assurant des réponses pertinentes et contextualisées selon les besoins de l'utilisateur.</p>
+            <h3>Objectifs:</h3>
+            <ul>
+                <li>Faciliter l'accès à l'information agricole — permettre aux agriculteurs d'obtenir rapidement des réponses fiables sur les bonnes pratiques, les cultures ou les traitements.</li>
+                <li>Assister la prise de décision — proposer des conseils adaptés au contexte et aux besoins des utilisateurs.</li>
+                <li>Fournir un outil d'assistance accessible 24h/24.</li>
+            </ul>
+            <h3>Technologies utilisées:</h3>
+            <p>Approche RAG, Modèle de langage (LLM) : Ollama, LangChain</p>
+            <h3>Résultats:</h3>
+            <p>Le modèle est toujours en cours de développement.</p>
+            <div class="modal-links">
+                <a href="https://github.com/No237845/AgriBot" target="_blank" class="modal-link"><i class="fab fa-github"></i> Lien GitHub du projet</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals pour les certifications -->
+    <div id="cert0-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('cert0-modal')">&times;</span>
+            <h2 class="modal-title">Certification Coursera</h2>
+            <img src="MachineLearning.PNG" alt="Certification Coursera" class="modal-image">
+            <p>Cette certification atteste de mes compétences en Machine Learning acquises sur la plateforme Coursera.</p>
+            <h3>Organisateur:</h3>
+            <p>Coursera</p>
+            <h3>Date d'obtention:</h3>
+            <p>Avril 2025</p>
+            <h3>Compétences validées:</h3>
+            <ul>
+                <li>Fondamentaux du Machine Learning</li>
+                <li>Algorithmes de classification et de régression</li>
+                <li>Évaluation des modèles</li>
+                <li>Projets pratiques</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="cert1-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('cert1-modal')">&times;</span>
+            <h2 class="modal-title">Certification finaliste de MIABE HACKATHON</h2>
+            <img src="miabe.PNG" alt="Certification MIABE HACKATHON" class="modal-image">
+            <p>Cette certification atteste de ma participation en tant que finaliste au hackathon MIABE, où j'ai travaillé sur un projet de développement d'une application mobile de cours en ligne avec une bibliothèque numérique intégrée.</p>
+            <h3>Organisateur:</h3>
+            <p>DTC</p>
+            <h3>Date d'obtention:</h3>
+            <p>Mai 2025</p>
+            <h3>Compétences validées:</h3>
+            <ul>
+                <li>Travail en autonomie</li>
+                <li>Travail en équipe sous pression</li>
+                <li>Présentation de résultats techniques</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="cert2-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('cert2-modal')">&times;</span>
+            <h2 class="modal-title">Certification en Analyse de données</h2>
+            <img src="data_analyste.PNG" alt="Certification en Analyse de données" class="modal-image">
+            <p>Certification complète en analyse de données couvrant l'ensemble du processus d'analyse, du nettoyage des données à la visualisation et à l'interprétation des résultats.</p>
+            <h3>Organisateur:</h3>
+            <p>FORCE-N</p>
+            <h3>Période:</h3>
+            <p>Novembre 2024 - Avril 2025</p>
+            <h3>Compétences validées:</h3>
+            <ul>
+                <li>Nettoyage et prétraitement des données</li>
+                <li>Analyse exploratoire des données</li>
+                <li>Statistiques descriptives et inférentielles</li>
+                <li>Visualisation de données</li>
+                <li>Création de rapports d'analyse</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="cert3-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('cert3-modal')">&times;</span>
+            <h2 class="modal-title">Certification Analyste en Cybersécurité</h2>
+            <img src="cybersecurite.PNG" alt="Certification Analyste en Cybersécurité" class="modal-image">
+            <p>Formation spécialisée en analyse de sécurité, couvrant la détection des menaces, l'analyse des vulnérabilités et les techniques de réponse aux incidents.</p>
+            <h3>Organisateur:</h3>
+            <p>Force-N</p>
+            <h3>Date d'obtention:</h3>
+            <p>Mai 2025</p>
+            <h3>Compétences validées:</h3>
+            <ul>
+                <li>Analyse des logs de sécurité</li>
+                <li>Détection d'intrusions</li>
+                <li>Analyse de malware</li>
+                <li>Gestion des incidents de sécurité</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="cert4-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('cert4-modal')">&times;</span>
+            <h2 class="modal-title">Certification Machine Learning et Régression</h2>
+            <img src="bakeli_learning.PNG" alt="Certification Machine Learning et Régression" class="modal-image">
+            <p>Formation approfondie sur les techniques de régression en apprentissage automatique, incluant la théorie et la pratique sur des cas réels.</p>
+            <h3>Organisateur:</h3>
+            <p>Bakeli</p>
+            <h3>Date d'obtention:</h3>
+            <p>Juillet 2025</p>
+            <h3>Compétences validées:</h3>
+            <ul>
+                <li>Régression linéaire simple et multiple</li>
+                <li>Régression polynomiale</li>
+                <li>Régression ridge et lasso</li>
+                <li>Évaluation des modèles de régression</li>
+                <li>Optimisation des hyperparamètres</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="cert5-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('cert5-modal')">&times;</span>
+            <h2 class="modal-title">Certification informatique Bureautique</h2>
+            <img src="burautique.PNG" alt="Certification en bureautique" class="modal-image">
+            <p>Certification attestant de mes compétences en informatique bureautique, incluant la maîtrise des outils de productivité courants.</p>
+            <h3>Date d'obtention:</h3>
+            <p>Octobre 2022</p>
+            <h3>Compétences validées:</h3>
+            <ul>
+                <li>Traitement de texte (Word)</li>
+                <li>Tableurs (Excel)</li>
+                <li>Présentations (PowerPoint)</li>
+                <li>Outils de collaboration en ligne</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Navigation mobile
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Fermer le menu mobile en cliquant sur un lien
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Fonctions pour ouvrir et fermer les modals
+        function openProjectModal(projectId) {
+            document.getElementById(projectId + '-modal').style.display = 'block';
+        }
+
+        function openCertModal(certId) {
+            document.getElementById(certId + '-modal').style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        // Fermer le modal en cliquant en dehors
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        // Animation au défilement
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observer les éléments à animer
+        document.querySelectorAll('.skill-category, .project-card, .cert-card').forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
